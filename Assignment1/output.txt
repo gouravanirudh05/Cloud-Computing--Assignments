@@ -1,0 +1,72 @@
+========================
+TEST 1 - CREATE BOOK
+========================
+(venv) gourav-anirudh@gourav-anirudh-Inspiron-14-5430:~/Desktop/SEM 7/Cloud/Assignment1$ curl -X POST http://127.0.0.1:5000/books -H "Content-Type: application/json" -d '{"title":"The Hobbit","author":"J.R.R. Tolkien","genre":"Fantasy"}'
+{
+  "author": "J.R.R. Tolkien",
+  "available": true,
+  "genre": "Fantasy",
+  "id": 1,
+  "title": "The Hobbit"
+}
+
+========================
+TEST 2 - CREATE BOOK
+========================
+(venv) gourav-anirudh@gourav-anirudh-Inspiron-14-5430:~/Desktop/SEM 7/Cloud/Assignment1$ curl -X POST http://127.0.0.1:5000/books -H "Content-Type: application/json" -d '{"title":"1984","author":"George Orwell","genre":"Dystopian"}'
+{
+  "author": "George Orwell",
+  "available": true,
+  "genre": "Dystopian",
+  "id": 2,
+  "title": "1984"
+}
+
+========================
+TEST 3 - UPDATE BOOK
+========================
+(venv) gourav-anirudh@gourav-anirudh-Inspiron-14-5430:~/Desktop/SEM 7/Cloud/Assignment1$ curl -X PUT http://127.0.0.1:5000/books/1 -H "Content-Type: application/json" -d '{"title":"The Hobbit - Updated","author":"J.R.R. Tolkien","genre":"Fantasy"}'
+{
+  "author": "J.R.R. Tolkien",
+  "available": true,
+  "genre": "Fantasy",
+  "id": 1,
+  "title": "The Hobbit - Updated"
+}
+
+========================
+TEST 4 - VERIFY UPDATE
+========================
+(venv) gourav-anirudh@gourav-anirudh-Inspiron-14-5430:~/Desktop/SEM 7/Cloud/Assignment1$ curl http://127.0.0.1:5000/books/1
+{
+  "author": "J.R.R. Tolkien",
+  "available": true,
+  "genre": "Fantasy",
+  "id": 1,
+  "title": "The Hobbit - Updated"
+}
+
+========================
+TEST 5 - DELETE BOOK
+========================
+(venv) gourav-anirudh@gourav-anirudh-Inspiron-14-5430:~/Desktop/SEM 7/Cloud/Assignment1$ curl -i -X DELETE http://127.0.0.1:5000/books/2
+HTTP/1.1 204 NO CONTENT
+Server: Werkzeug/3.1.8 Python/3.12.3
+Date: Sat, 29 Aug 2026 04:27:27 GMT
+Content-Type: text/html; charset=utf-8
+Connection: close
+
+========================
+TEST 6 - RETRIEVE DELETED BOOK
+========================
+(venv) gourav-anirudh@gourav-anirudh-Inspiron-14-5430:~/Desktop/SEM 7/Cloud/Assignment1$ curl -i http://127.0.0.1:5000/books/2
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/3.1.8 Python/3.12.3
+Date: Sat, 29 Aug 2026 04:28:06 GMT
+Content-Type: application/json
+Content-Length: 32
+Connection: close
+
+{
+  "error": "Book not found"
+}
