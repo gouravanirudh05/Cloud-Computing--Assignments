@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package calculator;
+
+// Calculator gRPC Service Contract
+service Calculator {
+    // Example (Provided): Add RPC
+    rpc Add (AddRequest) returns (AddResponse);
+
+    rpc Multiply (MultiplyRequest) returns (MultiplyResponse);
+    // TODO: Task 1 - Add rpc Subtract definition
+    rpc Subtract (SubtractRequest) returns (SubtractResponse);
+    // TODO: Task 1 - Add rpc Divide definition
+    rpc Divide (DivideRequest) returns (DivideResponse);
+}
+
+message AddRequest {
+    double num1 = 1;
+    double num2 = 2;
+}
+
+message AddResponse {
+    double result = 1;
+}
+
+// TODO: Task 1 - Define MultiplyRequest and MultiplyResponse messages
+message MultiplyRequest
+{
+    double num1=1;
+    double num2=2;
+}
+message MultiplyResponse
+{
+    double result=1;
+}
+// TODO: Task 1 - Define SubtractRequest and SubtractResponse messages
+message SubtractRequest
+{
+    double num1=1;
+    double num2=2;
+}
+message SubtractResponse
+{
+    double result=1;
+}
+// TODO: Task 1 - Define DivideRequest and DivideResponse messages
+message DivideRequest
+{
+    double num1=1;
+    double num2=2;
+}
+message DivideResponse
+{
+    double result=1;
+}

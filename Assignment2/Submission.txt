@@ -1,0 +1,52 @@
+Assignment 2
+Roll no- IMT2023005
+
+Questions:-
+1. Open calculator_pb2_grpc.py:
+   - What is the class name of the client stub?
+   - What base class does CalculatorServicer in server.py inherit from?
+
+Ans:- Class name of client stub:- CalculatorStub
+      CalculatorServicer inherits from calculator_pb2_grpc.CalculatorServicer
+
+2.What exact steps (commands and code edits) are required to add a new Power RPC method before `client.py` can call it?
+Ans:- We need to add the following things in calculator.proto 
+rpc Power (PowerRequest) returns (PowerResponse);
+
+We also need to add the messages for the Power the request and response
+message PowerRequest {
+    double num1 = 1;
+    double num2 = 2;
+}
+
+message PowerResponse {
+    double result = 1;
+}
+
+The proto files need to be compiled again after these changes 
+
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. calculator.proto
+
+In server.py we need to add a method to calculate the Power 
+
+def Power(self, request, context):
+    return calculator_pb2.PowerResponse(
+        result=request.num1 ** request.num2
+    )
+
+And in the client.py we need to add an option for power and call the power method accordingly 
+req = calculator_pb2.PowerRequest(num1=a, num2=b)
+res = stub.Power(req)
+print(f"Result: {a} ^ {b} = {res.result}")
+
+3. Temporarily change client.py to pass "hello" into `AddRequest(num1="hello", num2=5.0)` and run `python client.py`. What exact Python exception and error message are printed in the terminal?
+
+Traceback (most recent call last):
+  File "/home/gourav-anirudh/Desktop/SEM 7/Cloud/Assignments/Cloud-Computing--Assignments/Assignment2/client.py", line 56, in <module>
+    main()
+  File "/home/gourav-anirudh/Desktop/SEM 7/Cloud/Assignments/Cloud-Computing--Assignments/Assignment2/client.py", line 24, in main
+    req = calculator_pb2.AddRequest(num1="hello", num2=5.0)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: must be real number, not str
+
+The error is TypeError
