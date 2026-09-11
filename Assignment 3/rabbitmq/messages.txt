@@ -1,0 +1,7 @@
+RabbitMQ makes asynchronous communication simple
+Students are learning distributed systems
+The server received a new request
+Message queues help decouple applications
+Python is useful for building network applications
+Twinkle twinkle little star Mahesh Babu Superstar
+Thala for a reason

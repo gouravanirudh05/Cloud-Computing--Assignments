@@ -1,0 +1,14 @@
+Assignment 3
+Roll no:- IMT2023005
+
+1. Which consumer did you stop? Mention the consumer filename.
+Ans:- vowel_consumer.py
+
+2. While the selected consumer was stopped, did the other consumer continue to receive messages? Answer Yes/No.
+Ans:- Yes
+
+3. After restarting the stopped consumer, did it receive the messages that were sent while it was stopped? Answer Yes/No and briefly explain why.
+Ans:- No. vowel_consumer.py uses a temporary exclusive queue. When the consumer stopped, its queue was deleted, so messages published to it while it was stopped were not stored. Restarting the consumer created a new queue for it.
+
+4. After restarting the stopped consumer, run the producer again. Did both consumers receive the new messages? Answer Yes/No and briefly explain your observation.
+Ans:- Yes,Both consumers had  queues that were actively bound to the fanout exchange,so the new messages was delivered to both consumers.
